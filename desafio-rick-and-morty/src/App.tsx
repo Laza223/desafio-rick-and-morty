@@ -106,7 +106,7 @@ const App: React.FC = () => {
       {selectedCharacter && (
         <CharacterDetail
           character={selectedCharacter}
-          isFavorite={selectedCharacter.isFavorite}
+          onClick={() => {}}
           toggleFavorite={toggleFavorite}
         />
       )}
