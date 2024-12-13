@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import CharacterCard from "./components/characterCard";
-import { Character } from "./types/character";
 import CharacterDetail from "./components/characterDetail";
+import { Character } from "./types/character";
+import "./index.css";
 
 const App: React.FC = () => {
-  const [characters, setCharacters] = useState<Charactter[]>([]);
+  const [characters, setCharacters] = useState<Character[]>([]);
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
   const [searchCriteria, setSearchCriteria] = useState<{
@@ -71,15 +72,6 @@ const App: React.FC = () => {
             value={searchCriteria.species}
             onChange={(e) =>
               setSearchCriteria({ ...searchCriteria, species: e.target.value })
-            }
-            className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <input
-            type="text"
-            placeholder="Buscar por estado"
-            value={searchCriteria.status}
-            onChange={(e) =>
-              setSearchCriteria({ ...searchCriteria, status: e.target.value })
             }
             className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />

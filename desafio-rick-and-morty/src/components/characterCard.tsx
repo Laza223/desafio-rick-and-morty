@@ -1,19 +1,25 @@
 import React, { useState } from 'react';
 import { Character } from "../types/character";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faHeartBroken } from '@fortawesome/free-solid-svg-icons';
 
 interface CharacterCardProps {
   character: Character;
-  onClick: (character: Character) => void;
   toggleFavorite: (characterId: number) => void;
+  handleCharacterClick: (character: Character) => void;
+  isFavorite: boolean;
 }
 
-const CharacterCard: React.FC<CharacterCardProps> = ({ character, onClick, toggleFavorite }) => {
+const CharacterCard: React.FC<CharacterCardProps> = ({
+  character,
+  toggleFavorite,
+  handleCharacterClick,
+  isFavorite,
+}) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleClick = () => {
-    onClick(character);
+    handleCharacterClick(character);
   };
 
   const handleFavoriteClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -37,17 +43,14 @@ const CharacterCard: React.FC<CharacterCardProps> = ({ character, onClick, toggl
           className="text-2xl p-2"
           onClick={handleFavoriteClick}
         >
-          <FontAwesomeIcon
-            icon={faHeart}
-            className={`${
-              character.isFavorite
-                ? 'text-red-500 hover:text-red-700'
-                : 'text-gray-500 hover:text-gray-700'
-            }`}
-          />
+          {isFavorite ? (
+            <FontAwesomeIcon icon={faHeart} className="text-red-500" />
+          ) : (
+            <FontAwesomeIcon icon={faHeartBroken} className="text-gray-500" />
+          )}
         </button>
       </div>
-      <p className="text-gray-700 text-base">Species: {character.species}</p>
+      <p className="text-gray-700 text-base">Especie: {character.species}</p>
     </div>
   );
 };
