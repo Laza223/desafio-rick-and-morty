@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { Character } from "../types/character";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faHeartBroken } from '@fortawesome/free-solid-svg-icons';
@@ -16,7 +15,6 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
   handleCharacterClick,
   isFavorite,
 }) => {
-  const [isHovered, setIsHovered] = useState(false);
 
   const handleClick = () => {
     handleCharacterClick(character);
@@ -29,14 +27,10 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
 
   return (
     <div
-      className={`bg-white shadow-md rounded-lg overflow-hidden w-full md:w-1/3 p-4 ${
-        isHovered ? 'border-2 border-blue-500' : ''
-      }`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className={`bg-white shadow-md rounded-lg overflow-hidden w-full p-4 `}
       onClick={handleClick}
     >
-      <img src={character.image} alt={character.name} className="w-full h-48 object-cover" />
+      <img src={character.image} alt={character.name} className="w-full h-56 object-cover" />
       <div className="mt-4 flex justify-between items-center">
         <h3 className="text-gray-900 font-bold text-xl mb-2">{character.name}</h3>
         <button
